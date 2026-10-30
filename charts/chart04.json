@@ -1,0 +1,193 @@
+{
+  "title": {
+    "text": "Without secondary school, the shortfall fell by 7.2 points",
+    "subtitle": "Compared with Australia overall (not a university-versus-school comparison)",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "color": "#243847",
+    "subtitleColor": "#526472"
+  },
+  "data": {
+    "url": "data/education_shortfall.csv"
+  },
+  "width": "container",
+  "height": 170,
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 9,
+        "color": "#D5E3EB",
+        "strokeCap": "round"
+      },
+      "encoding": {
+        "x": {
+          "field": "No_secondary",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "title": "Digital ability score (0–100)"
+        },
+        "x2": {
+          "field": "Australia"
+        },
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": [
+            2023,
+            2025
+          ],
+          "title": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 200,
+        "color": "#C9683F"
+      },
+      "encoding": {
+        "x": {
+          "field": "No_secondary",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "tooltip": [
+          {
+            "field": "year"
+          },
+          {
+            "field": "No_secondary",
+            "title": "No secondary school"
+          },
+          {
+            "field": "Australia"
+          },
+          {
+            "field": "shortfall",
+            "title": "Below national average (points)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 200,
+        "color": "#2475AC"
+      },
+      "encoding": {
+        "x": {
+          "field": "Australia",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "year",
+          "type": "ordinal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -15,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#B14F2A"
+      },
+      "encoding": {
+        "x": {
+          "field": "No_secondary",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "No_secondary",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -15,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#18547D"
+      },
+      "encoding": {
+        "x": {
+          "field": "Australia",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "Australia",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 13,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#253548"
+      },
+      "encoding": {
+        "x": {
+          "field": "Australia",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "shortfall",
+          "type": "quantitative",
+          "format": "+.1f"
+        }
+      }
+    }
+  ],
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "background": "transparent",
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#243847",
+      "titleColor": "#243847",
+      "labelFontSize": 12
+    },
+    "legend": {
+      "labelColor": "#243847",
+      "titleColor": "#243847"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Digital inequality goes beyond age and education",
+    "subtitle": "Published 2025 between-group differences \u00b7 index points, not percentages",
+    "anchor": "start",
+    "fontSize": 18,
+    "color": "#243847"
+  },
+  "data": {
+    "url": "data/ability_gaps.csv"
+  },
+  "width": "container",
+  "height": 255,
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#7358A2",
+        "height": 32,
+        "cornerRadiusEnd": 4
+      },
+      "encoding": {
+        "y": {
+          "field": "comparison",
+          "type": "nominal",
+          "sort": {
+            "field": "gap",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "labelLimit": 320,
+            "labelFontSize": 13
+          }
+        },
+        "x": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              55
+            ]
+          },
+          "axis": {
+            "title": "Difference in digital ability (index points)",
+            "grid": true
+          }
+        },
+        "tooltip": [
+          {
+            "field": "comparison",
+            "title": "Comparison"
+          },
+          {
+            "field": "gap",
+            "type": "quantitative",
+            "title": "Gap in points",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 7,
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "#243847"
+      },
+      "encoding": {
+        "y": {
+          "field": "comparison",
+          "type": "nominal",
+          "sort": {
+            "field": "gap",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "gap",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "gap",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#243847",
+      "titleColor": "#243847",
+      "gridColor": "#E4EAED"
+    }
+  }
+}

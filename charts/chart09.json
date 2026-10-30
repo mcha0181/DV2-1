@@ -1,0 +1,162 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where did online Census participation grow most?",
+    "subtitle": "Area = 2021 online share \u00b7 Colour = 2011\u20132021 gain (percentage points)",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "color": "#253B45"
+  },
+  "width": 760,
+  "height": 420,
+  "projection": {
+    "type": "mercator",
+    "center": [
+      134,
+      -28
+    ],
+    "scale": 545,
+    "translate": [
+      375,
+      190
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_outline.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E5EFEB",
+        "stroke": "#A3BAB9",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "url": "data/states_census_change_map.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "stroke": "white",
+        "strokeWidth": 2.2,
+        "opacity": 0.96
+      },
+      "encoding": {
+        "longitude": {
+          "field": "plot_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "plot_lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "online2021",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "range": [
+              0,
+              1400
+            ]
+          },
+          "legend": {
+            "title": "Online responses in 2021 (%)",
+            "values": [
+              60,
+              75,
+              90
+            ],
+            "orient": "bottom"
+          }
+        },
+        "color": {
+          "field": "increase_11_21",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              30,
+              50
+            ],
+            "range": [
+              "#F2C9A9",
+              "#E18A68",
+              "#9B4F88",
+              "#364F96"
+            ]
+          },
+          "legend": {
+            "title": "Increase since 2011 (pp)",
+            "orient": "bottom",
+            "gradientLength": 240
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State / territory"
+          },
+          {
+            "field": "online2021",
+            "type": "quantitative",
+            "title": "Online 2021 (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "increase_11_21",
+            "type": "quantitative",
+            "title": "2011\u201321 change (pp)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/states_census_change_map.csv"
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "dy": -27,
+        "color": "#233844"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "plot_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "plot_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "code"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelColor": "#263940",
+      "titleColor": "#263940",
+      "labelFontSize": 12
+    }
+  }
+}
