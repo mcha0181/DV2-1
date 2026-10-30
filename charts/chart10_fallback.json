@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "State digital ability \u2014 alternative map view",
+    "subtitle": "State boundaries unavailable; circles use local positions and actual state scores"
+  },
+  "width": 680,
+  "height": 390,
+  "projection": {
+    "type": "mercator",
+    "center": [
+      134,
+      -27
+    ],
+    "scale": 545,
+    "translate": [
+      340,
+      195
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_outline.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E9F0F1",
+        "stroke": "#849795",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "url": "data/states_2025.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "size": 850,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "ability",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              68,
+              82
+            ],
+            "range": [
+              "#E7F2F6",
+              "#6EACBD",
+              "#165079"
+            ]
+          },
+          "legend": {
+            "title": "Ability (68\u201382 zoomed)",
+            "orient": "bottom"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state"
+          },
+          {
+            "field": "ability",
+            "type": "quantitative",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/states_2025.csv"
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#173F56",
+        "dy": -22
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "code"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "title": {
+    "text": "Employment and household circumstances add further gaps",
+    "subtitle": "Between-group differences in index points · not percentage changes",
+    "anchor": "start",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "color": "#243847",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#526472"
+  },
+  "data": {
+    "url": "data/ability_gaps.csv"
+  },
+  "width": "container",
+  "height": 250,
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 4,
+        "color": "#BFCED5"
+      },
+      "encoding": {
+        "y": {
+          "field": "comparison",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null,
+          "axis": {
+            "labelLimit": 280
+          }
+        },
+        "x": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              55
+            ]
+          },
+          "title": "Index-point difference"
+        },
+        "x2": {
+          "field": "gap"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 220,
+        "color": "#8060AB"
+      },
+      "encoding": {
+        "y": {
+          "field": "comparison",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "gap",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "comparison"
+          },
+          {
+            "field": "gap",
+            "type": "quantitative",
+            "title": "Gap (points)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dx": 13,
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "align": "left",
+        "color": "#243847"
+      },
+      "encoding": {
+        "y": {
+          "field": "comparison",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "gap",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "gap",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ],
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "background": "transparent",
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#243847",
+      "titleColor": "#243847",
+      "gridColor": "#E3E9ED",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#243847"
+    }
+  }
+}

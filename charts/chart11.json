@@ -1,0 +1,131 @@
+{
+  "title": {
+    "text": "Digital exclusion affects two in three people aged 75+",
+    "subtitle": "2025 · aged 75+: 66.5%; Australia overall: 20.6% · groups overlap",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "color": "#243847",
+    "subtitleColor": "#526472"
+  },
+  "data": {
+    "url": "data/digital_exclusion_2025.csv"
+  },
+  "width": "container",
+  "height": 210,
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "size": 30,
+        "cornerRadiusEnd": 5
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": {
+            "field": "order",
+            "order": "ascending"
+          },
+          "title": null,
+          "axis": {
+            "labelLimit": 310,
+            "labelFontSize": 13
+          }
+        },
+        "x": {
+          "field": "excluded_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              75
+            ]
+          },
+          "title": "People digitally excluded (%)"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.group === 'Australia overall'",
+            "value": "#1769AA"
+          },
+          "value": "#CB633A"
+        },
+        "tooltip": [
+          {
+            "field": "group"
+          },
+          {
+            "field": "excluded_pct",
+            "type": "quantitative",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          5,
+          4
+        ],
+        "color": "#243847",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "datum": 20.6,
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dx": 7,
+        "align": "left",
+        "fontWeight": "bold",
+        "fontSize": 14,
+        "color": "#243847"
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": {
+            "field": "order",
+            "order": "ascending"
+          }
+        },
+        "x": {
+          "field": "excluded_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "excluded_pct",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ],
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "background": "transparent",
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#243847",
+      "titleColor": "#243847",
+      "labelFontSize": 12
+    },
+    "legend": {
+      "labelColor": "#243847",
+      "titleColor": "#243847"
+    }
+  }
+}

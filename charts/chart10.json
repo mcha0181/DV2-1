@@ -1,0 +1,119 @@
+{
+  "title": {
+    "text": "A narrow spread between states, despite wide social gaps",
+    "subtitle": "2025 · ACT 79.6, Tasmania 69.7 · 9.9 index points separate the extremes",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "color": "#243847",
+    "subtitleColor": "#526472"
+  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#263940",
+      "titleColor": "#263940",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "gridColor": "#e1e8e8"
+    },
+    "legend": {
+      "titleColor": "#263940",
+      "labelColor": "#263940",
+      "labelFontSize": 12
+    }
+  },
+  "width": 700,
+  "height": 415,
+  "projection": {
+    "type": "mercator",
+    "center": [
+      134,
+      -26
+    ],
+    "scale": 620,
+    "translate": [
+      365,
+      215
+    ]
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.min.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "filter": "indexof(['New South Wales','Victoria','Queensland','South Australia','Western Australia','Tasmania','Northern Territory','Australian Capital Territory'], datum.properties.STATE_NAME) >= 0"
+    },
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {
+          "url": "data/states_2025.csv"
+        },
+        "key": "state",
+        "fields": [
+          "ability",
+          "code"
+        ]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#ffffff",
+    "strokeWidth": 1.3
+  },
+  "encoding": {
+    "color": {
+      "field": "ability",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          68,
+          82
+        ],
+        "range": [
+          "#EFF5FA",
+          "#C4E0E7",
+          "#79B9C4",
+          "#277F98",
+          "#1B426C"
+        ]
+      },
+      "legend": {
+        "title": "Ability (zoomed scale: 68–82)",
+        "orient": "bottom",
+        "gradientLength": 280,
+        "values": [
+          68,
+          71,
+          74,
+          77,
+          80,
+          82
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "properties.STATE_NAME",
+        "title": "State / territory"
+      },
+      {
+        "field": "ability",
+        "type": "quantitative",
+        "format": ".1f",
+        "title": "Ability score"
+      }
+    ]
+  }
+}
